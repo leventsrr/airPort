@@ -6,6 +6,6 @@ abstract class CityState {}
 class CityNotSelected extends CityState {}
 
 class CitySelected extends CityState {
-  final String cityName;
-  CitySelected({required this.cityName});
+  final String airportName;
+  CitySelected({required this.airportName});
 }

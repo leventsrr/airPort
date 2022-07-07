@@ -6,6 +6,9 @@ part 'city_state.dart';
 class CityCubit extends Cubit<CityState> {
   CityCubit() : super(CityNotSelected());
 
-  void selectCity(String _selectedCity) =>
-      emit(CitySelected(cityName: _selectedCity));
+  void selectCity(String _selectedCity) {
+    if (!_selectedCity.isEmpty) {
+      emit(CitySelected(airportName: _selectedCity));
+    }
+  }
 }

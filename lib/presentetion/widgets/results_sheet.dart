@@ -7,7 +7,7 @@ class ResultsSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return FloatingActionButton(
       onPressed: () {
         showModalBottomSheet<void>(
           context: context,
@@ -42,7 +42,7 @@ class ResultsSheet extends StatelessWidget {
           },
         );
       },
-      child: const Text('Show Result'),
+      child: const Icon(Icons.local_airport),
     );
   }
 }

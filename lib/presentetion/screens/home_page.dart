@@ -1,3 +1,4 @@
+import 'package:air_ports/logic/cubit/cityCubit/city_cubit.dart';
 import 'package:air_ports/logic/cubit/internetCubit/innternet_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: Column(
@@ -25,8 +27,17 @@ class HomePage extends StatelessWidget {
               }
             },
           ),
-          ResultsSheet(),
         ],
+      ),
+      floatingActionButton: BlocBuilder<CityCubit, CityState>(
+        builder: (context, state) {
+          if (state is CityNotSelected) {
+            print('seçilmedi');
+          } else if (state is CitySelected) {
+            return ResultsSheet();
+          }
+          return Container();
+        },
       ),
     );
   }
