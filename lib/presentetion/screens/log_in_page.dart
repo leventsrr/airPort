@@ -46,7 +46,7 @@ class LogInPage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 15,
-                ), //levooo değişti buralar oldu bu sefer
+                ),
                 ElevatedButton(
                   onPressed: () {
                     if (_emailController.text == 'test@netcad.com' &&

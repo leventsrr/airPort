@@ -1,4 +1,6 @@
+import 'package:air_ports/logic/cubit/internetCubit/innternet_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../widgets/map.dart';
 import '../widgets/results_sheet.dart';
 import '../widgets/search_bar.dart';
@@ -14,7 +16,15 @@ class HomePage extends StatelessWidget {
       body: Column(
         children: [
           SearchBar(),
-          Map(),
+          BlocBuilder<InternetCubit, InternetState>(
+            builder: (context, state) {
+              if (state is InternetConnected) {
+                return Map();
+              } else {
+                return Text('Internet Is Disconnected');
+              }
+            },
+          ),
           ResultsSheet(),
         ],
       ),

@@ -29,7 +29,6 @@ class _MapState extends State<Map> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        color: Colors.red,
         child: GoogleMap(
           mapType: MapType.hybrid,
           initialCameraPosition: _kGooglePlex,
