@@ -9,7 +9,7 @@ class SearchBar extends StatelessWidget {
   TextEditingController _cityController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CityCubit, CityState>(
+    return BlocBuilder<AirportCubit, AirportState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
@@ -21,7 +21,7 @@ class SearchBar extends StatelessWidget {
                 suffixIcon: IconButton(
                     onPressed: () {
                       context
-                          .read<CityCubit>()
+                          .read<AirportCubit>()
                           .selectCity(_cityController.text);
                     },
                     icon: const Icon(Icons.search))),

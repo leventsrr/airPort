@@ -29,12 +29,14 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      floatingActionButton: BlocBuilder<CityCubit, CityState>(
+      floatingActionButton: BlocBuilder<AirportCubit, AirportState>(
         builder: (context, state) {
-          if (state is CityNotSelected) {
+          if (state is AirportNotSelected) {
             print('seçilmedi');
-          } else if (state is CitySelected) {
-            return ResultsSheet();
+          } else if (state is AirportSelected) {
+            return ResultsSheet(
+              airportState: state,
+            );
           }
           return Container();
         },

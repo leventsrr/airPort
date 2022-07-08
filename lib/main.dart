@@ -22,8 +22,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<InternetCubit>(
             create: (context) => InternetCubit(connectivity: connectivity)),
-        BlocProvider<CityCubit>(
-          create: (context) => CityCubit(),
+        BlocProvider<AirportCubit>(
+          create: (context) => AirportCubit(),
         )
       ],
       child: MaterialApp(

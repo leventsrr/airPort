@@ -1,11 +1,11 @@
 part of 'city_cubit.dart';
 
 @immutable
-abstract class CityState {}
+abstract class AirportState {}
 
-class CityNotSelected extends CityState {}
+class AirportNotSelected extends AirportState {}
 
-class CitySelected extends CityState {
-  final String airportName;
-  CitySelected({required this.airportName});
+class AirportSelected extends AirportState {
+  List<Item>? airportName;
+  AirportSelected({required this.airportName});
 }

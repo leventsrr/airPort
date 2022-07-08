@@ -1,9 +1,10 @@
+import 'package:air_ports/logic/cubit/cityCubit/city_cubit.dart';
 import 'package:flutter/material.dart';
 
 class ResultsSheet extends StatelessWidget {
-  const ResultsSheet({
-    Key? key,
-  }) : super(key: key);
+  AirportSelected airportState;
+
+  ResultsSheet({required this.airportState});
 
   @override
   Widget build(BuildContext context) {
@@ -19,25 +20,29 @@ class ResultsSheet extends StatelessWidget {
                       topRight: Radius.circular(12))),
               child: ListView.separated(
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                    return Container(
+                      height: MediaQuery.of(context).size.height / 9,
                       child: Card(
-                        child: InkWell(
-                          splashColor: Colors.blue.withAlpha(30),
-                          onTap: () {
-                            debugPrint('Card tapped.');
-                          },
-                          child: const SizedBox(
-                            height: 50,
-                            child: Text('A card that can be tapped'),
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(
+                              children: [
+                                Text(airportState.airportName![index].name),
+                                SizedBox(width: 10),
+                                Icon(Icons.airplanemode_active),
+                              ],
+                            ),
+                            Text(airportState.airportName![index].countryCode)
+                          ],
                         ),
                       ),
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) =>
                       const Divider(),
-                  itemCount: 10),
+                  itemCount: airportState.airportName!.length),
             );
           },
         );
