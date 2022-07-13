@@ -1,6 +1,7 @@
 import 'package:air_ports/logic/cubit/LogInCubit/log_in_cubit.dart';
 import 'package:air_ports/logic/cubit/cityCubit/airport_cubit.dart';
 import 'package:air_ports/presentetion/screens/home_page.dart';
+import 'package:air_ports/presentetion/screens/log_in_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +32,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomePage(),
+        home: BlocProvider.value(
+          value: LogInCubit(),
+          child: LogInPage(),
+        ),
       ),
     );
   }
