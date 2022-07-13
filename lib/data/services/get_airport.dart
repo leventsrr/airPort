@@ -33,7 +33,7 @@ class AirPortRequest {
     }
   }
 
-  Future getAirportDetails(String icaoCode) async {
+  Future<List<Routes>?> getAirportDetails(String icaoCode) async {
     String _url =
         'https://aerodatabox.p.rapidapi.com/airports/icao/$icaoCode/stats/routes/daily';
 
@@ -41,16 +41,11 @@ class AirPortRequest {
       Response response = await _dio.get(
         _url,
       );
-
-      print(
-          '**********************başarılı geldi******************************');
-      //AirPortDetail airPortDetail = AirPortDetail.fromJson(response.data);
-
       AirPortDetail airPortDetail = AirPortDetail.fromJson(response.data);
 
       return airPortDetail.routes;
     } catch (e) {
-      print("burda patladı : ${e.toString()}");
+      print(e.toString());
     }
   }
 }

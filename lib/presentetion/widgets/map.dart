@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:air_ports/logic/cubit/cityCubit/airport_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../screens/airpot_details_page.dart';
+
 class MapPage extends StatefulWidget {
-  AirportSelected airportSelected;
+  AirportSelected? airportSelected;
   MapPage({required this.airportSelected});
 
   @override
@@ -15,16 +18,12 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
   late double lat;
   late double lon;
   late CameraPosition _kLake;
   void setCameraPosition() {
-    lat = widget.airportSelected.airportName!.first.location.lat;
-    lon = widget.airportSelected.airportName!.first.location.lon;
+    lat = widget.airportSelected!.airportName!.first.location.lat;
+    lon = widget.airportSelected!.airportName!.first.location.lon;
     _kLake = CameraPosition(
         bearing: 192.8334901395799,
         target: LatLng(lat, lon),
@@ -34,13 +33,13 @@ class _MapPageState extends State<MapPage> {
 
   List<Marker> markers = [];
   void createMarkers() {
-    for (int i = 0; i < widget.airportSelected.airportName!.length; i++) {
+    for (int i = 0; i < widget.airportSelected!.airportName!.length; i++) {
       markers.add(Marker(
         markerId: MarkerId('$i'),
-        position: LatLng(widget.airportSelected.airportName![i].location.lat,
-            widget.airportSelected.airportName![i].location.lon),
-        infoWindow:
-            InfoWindow(title: '${widget.airportSelected.airportName![i].name}'),
+        position: LatLng(widget.airportSelected!.airportName![i].location.lat,
+            widget.airportSelected!.airportName![i].location.lon),
+        infoWindow: InfoWindow(
+            title: '${widget.airportSelected!.airportName![i].name}'),
       ));
     }
   }
