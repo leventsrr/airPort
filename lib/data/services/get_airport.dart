@@ -1,6 +1,8 @@
 import 'package:air_ports/data/models/airport_model.dart';
 import 'package:dio/dio.dart';
 
+import '../models/airport_details_model.dart';
+
 class AirPortRequest {
   static String _apiKey = '1bd5e87f33mshf1aeef959573101p15333ejsn40477d66287f';
   late Dio _dio;
@@ -28,6 +30,27 @@ class AirPortRequest {
       return airport.items;
     } catch (e) {
       print(e.toString());
+    }
+  }
+
+  Future getAirportDetails(String icaoCode) async {
+    String _url =
+        'https://aerodatabox.p.rapidapi.com/airports/icao/$icaoCode/stats/routes/daily';
+
+    try {
+      Response response = await _dio.get(
+        _url,
+      );
+
+      print(
+          '**********************başarılı geldi******************************');
+      //AirPortDetail airPortDetail = AirPortDetail.fromJson(response.data);
+
+      AirPortDetail airPortDetail = AirPortDetail.fromJson(response.data);
+
+      return airPortDetail.routes;
+    } catch (e) {
+      print("burda patladı : ${e.toString()}");
     }
   }
 }

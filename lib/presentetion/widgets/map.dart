@@ -1,47 +1,65 @@
 import 'dart:async';
 
+import 'package:air_ports/logic/cubit/cityCubit/airport_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class Map extends StatefulWidget {
-  const Map({
-    Key? key,
-  }) : super(key: key);
+class MapPage extends StatefulWidget {
+  AirportSelected airportSelected;
+  MapPage({required this.airportSelected});
 
   @override
-  State<Map> createState() => _MapState();
+  State<MapPage> createState() => _MapPageState();
 }
 
-class _MapState extends State<Map> {
+class _MapPageState extends State<MapPage> {
   Completer<GoogleMapController> _controller = Completer();
 
   static final CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
+  late double lat;
+  late double lon;
+  late CameraPosition _kLake;
+  void setCameraPosition() {
+    lat = widget.airportSelected.airportName!.first.location.lat;
+    lon = widget.airportSelected.airportName!.first.location.lon;
+    _kLake = CameraPosition(
+        bearing: 192.8334901395799,
+        target: LatLng(lat, lon),
+        tilt: 59.440717697143555,
+        zoom: 10);
+  }
 
-  static final CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
+  List<Marker> markers = [];
+  void createMarkers() {
+    for (int i = 0; i < widget.airportSelected.airportName!.length; i++) {
+      markers.add(Marker(
+        markerId: MarkerId('$i'),
+        position: LatLng(widget.airportSelected.airportName![i].location.lat,
+            widget.airportSelected.airportName![i].location.lon),
+        infoWindow:
+            InfoWindow(title: '${widget.airportSelected.airportName![i].name}'),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    createMarkers();
+    setCameraPosition();
     return Expanded(
       child: Container(
         child: GoogleMap(
+          markers: Set<Marker>.of(markers),
           mapType: MapType.hybrid,
-          initialCameraPosition: _kGooglePlex,
+          initialCameraPosition: _kLake,
           onMapCreated: (GoogleMapController controller) {
             _controller.complete(controller);
           },
         ),
       ),
     );
-  }
-
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }

@@ -1,4 +1,5 @@
-import 'package:air_ports/logic/cubit/cityCubit/city_cubit.dart';
+import 'package:air_ports/logic/cubit/LogInCubit/log_in_cubit.dart';
+import 'package:air_ports/logic/cubit/cityCubit/airport_cubit.dart';
 import 'package:air_ports/presentetion/screens/home_page.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +23,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<InternetCubit>(
             create: (context) => InternetCubit(connectivity: connectivity)),
-        BlocProvider<AirportCubit>(
-          create: (context) => AirportCubit(),
-        )
+        BlocProvider<AirportCubit>(create: (context) => AirportCubit()),
+        BlocProvider<LogInCubit>(create: (context) => LogInCubit()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

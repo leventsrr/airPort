@@ -1,4 +1,4 @@
-import 'package:air_ports/logic/cubit/cityCubit/city_cubit.dart';
+import 'package:air_ports/logic/cubit/cityCubit/airport_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +22,7 @@ class SearchBar extends StatelessWidget {
                     onPressed: () {
                       context
                           .read<AirportCubit>()
-                          .selectCity(_cityController.text);
+                          .selectAirport(_cityController.text);
                     },
                     icon: const Icon(Icons.search))),
           ),

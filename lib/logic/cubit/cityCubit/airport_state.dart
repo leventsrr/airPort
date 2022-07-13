@@ -1,4 +1,4 @@
-part of 'city_cubit.dart';
+part of 'airport_cubit.dart';
 
 @immutable
 abstract class AirportState {}
@@ -7,5 +7,6 @@ class AirportNotSelected extends AirportState {}
 
 class AirportSelected extends AirportState {
   List<Item>? airportName;
-  AirportSelected({required this.airportName});
+  List? airportDetails;
+  AirportSelected({this.airportName, this.airportDetails});
 }

@@ -1,4 +1,4 @@
-import 'package:air_ports/logic/cubit/cityCubit/city_cubit.dart';
+import 'package:air_ports/logic/cubit/cityCubit/airport_cubit.dart';
 import 'package:air_ports/logic/cubit/internetCubit/innternet_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +21,23 @@ class HomePage extends StatelessWidget {
           BlocBuilder<InternetCubit, InternetState>(
             builder: (context, state) {
               if (state is InternetConnected) {
-                return Map();
+                return BlocBuilder<AirportCubit, AirportState>(
+                  builder: (context, airportState) {
+                    if (airportState is AirportSelected) {
+                      return MapPage(
+                        airportSelected: airportState,
+                      );
+                    } else {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('images/airport.png'),
+                          Text('Please Select The Airport'),
+                        ],
+                      );
+                    }
+                  },
+                );
               } else {
                 return Text('Internet Is Disconnected');
               }
