@@ -1,7 +1,7 @@
 AndroidManifest.xml dosyasında 35. satırdaki 'android:value="Your Google Maps API Key"/>' bölümünde kendi google maps api key inizi koymanız gerekmektedir.
 
 # AirPort
-### Staj sürecinde Bloc yapısını öğrenmek için yapmış olduğum mobil uygulama. Proje içinde Google Maps ve AeroDataBox API larından alınan destek ile kullanıcının havalimanı ismini ismini girerek girilen adı içinde barındıran havalimanlarının haritada gösterilmesi ve ayrıca listelenmesi sağlanmıştır. Listelenen havalimanlarına tıklanarak ayrıntılı bilgiler elde edilebilmektedir. 
+### Staj sürecinde Bloc yapısını öğrenmek için yapmış olduğum mobil uygulama. Proje içinde Google Maps ve AeroDataBox API larından alınan destek ile kullanıcının havalimanı ismini girerek girilen adı içinde barındıran havalimanlarının haritada gösterilmesi ve ayrıca listelenmesi sağlanmıştır. Listelenen havalimanlarına tıklanarak ayrıntılı bilgiler elde edilebilmektedir. 
 ---
 * Ayrıntı sayfası API limiti dolduğu için görselde gösterilememiştir.
 
